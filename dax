@@ -41,7 +41,19 @@ RETURN
 "Nejvíce deštivý rok: "&_maximum_rok&" ("&_maximum&")"
 
 
+________________________________________________________________________
 
+srazkyytd = 
+CALCULATE(
+    sum(data[srazky]),
+    data[mesic] <=SELECTEDVALUE(data[mesic]))
 
+____________________________________________________________________________
+
+srazkyytdpy = 
+CALCULATE(
+    sum(data[srazky]),
+    data[mesic] <=SELECTEDVALUE(data[mesic]),
+    data[rok] = SELECTEDVALUE(data[rok]) - 1)
 
 
