@@ -20,6 +20,26 @@ ____________________________________________________________________________
 
 kpisrazkysmajlik = IF(SUM(data[srazky])>600,"😊","😒")
 
+________________________________________________________________________________
+
+toproky = 
+
+VAR _tabulka = 
+ADDCOLUMNS(
+    ALL(data[rok]),
+"rocni_srazky",
+ROUND(CALCULATE(SUM(data[srazky])),1))
+
+VAR _minimum = MINX(_tabulka,[rocni_srazky])
+VAR _maximum = MAXX(_tabulka,[rocni_srazky])
+
+VAR _mininum_rok = MINX(FILTER(_tabulka,[rocni_srazky] = _minimum),data[rok])
+VAR _maximum_rok = MAXX(FILTER(_tabulka,[rocni_srazky] = _maximum),data[rok])
+
+RETURN
+"Nejméně deštivý rok: "&_mininum_rok&" ("&_minimum&")"&UNICHAR(10)&
+"Nejvíce deštivý rok: "&_maximum_rok&" ("&_maximum&")"
+
 
 
 
