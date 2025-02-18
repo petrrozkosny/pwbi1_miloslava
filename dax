@@ -1,1 +1,23 @@
 nadpis grafu = "Vývoj srážek v lokalitě "&SELECTEDVALUE(data[lokalita])&", roce "&SELECTEDVALUE(data[rok])
+
+
+__________________________________________________________________
+
+srazkymezirocne = 
+IF(
+    -- suma srazek ve vybranem roce
+    SUM(data[srazky])
+>
+    -- suma srazek v predchozim roce
+    CALCULATE(
+        SUM(data[srazky]),
+    data[rok] = SELECTEDVALUE(data[rok]) - 1),
+"green",
+"tomato"
+)
+
+
+
+
+
+
